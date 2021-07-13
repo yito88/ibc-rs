@@ -39,8 +39,11 @@ impl TryFrom<RawMockHeader> for MockHeader {
 }
 
 impl From<MockHeader> for RawMockHeader {
-    fn from(value: MockHeader) -> Self {
-        value.into()
+    fn from(mh: MockHeader) -> Self {
+        Self {
+            height: Some(mh.height.into()),
+            timestamp: mh.timestamp.as_nanoseconds(),
+        }
     }
 }
 

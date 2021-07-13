@@ -39,7 +39,7 @@ impl std::str::FromStr for ClientType {
             "07-tendermint" => Ok(Self::Tendermint),
 
             #[cfg(any(test, feature = "mocks"))]
-            "mock" => Ok(Self::Mock),
+            "9999-mock" => Ok(Self::Mock),
 
             _ => Err(error::Kind::UnknownClientType(s.to_string()).into()),
         }
@@ -65,7 +65,7 @@ mod tests {
 
     #[test]
     fn parse_mock_client_type() {
-        let client_type = ClientType::from_str("mock");
+        let client_type = ClientType::from_str("9999-mock");
 
         match client_type {
             Ok(ClientType::Mock) => (),
