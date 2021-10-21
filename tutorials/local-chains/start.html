@@ -271,9 +271,14 @@ address_type = { derivation = 'cosmos' }
 # Recommended value for Cosmos SDK: 'ibc'
 store_prefix = 'ibc'
 
+# Specify the default amount of gas to be used in case the tx simulation fails,
+# and Hermes cannot estimate the amount of gas needed.
+# Default: 100 000
+default_gas = 100000
+
 # Specify the maximum amount of gas to be used as the gas limit for a transaction.
-# Default: 300000
-max_gas = 3000000
+# Default: 300 000
+max_gas = 300000
 
 # Specify the price per gas used of the fee to submit a transaction and
 # the denomination of the fee. Required
@@ -308,6 +313,12 @@ trusting_period = '14days'
 # Warning: This is an advanced feature! Modify with caution.
 trust_threshold = { numerator = '1', denominator = '3' }
 
+# Specify a string that Hermes will use as a memo for each transaction it submits
+# to this chain. The string is limited to 50 characters. Default: '' (empty).
+# Note: Hermes will append to the string defined here additional
+# operational debugging information, e.g., relayer build version.
+memo_prefix = ''
+
 # This section specifies the filters for policy based relaying.
 # Default: no policy/ filters
 # The section is ignored if the global 'filter' option is set to 'false'.
@@ -337,6 +348,7 @@ rpc_timeout = '10s'
 account_prefix = 'cosmos'
 key_name = 'testkey'
 store_prefix = 'ibc'
+default_gas = 100000
 max_gas = 3000000
 gas_price = { price = 0.001, denom = 'stake' }
 gas_adjustment = 0.1
